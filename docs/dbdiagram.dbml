@@ -1,0 +1,40 @@
+// ============================================
+// Cafe Inn Database Schema
+// สร้างจาก SQLAlchemy models
+// ใช้กับ https://dbdiagram.io
+// ============================================
+
+Table users {
+  user_id int [pk, increment]
+  username varchar(255) [unique, not null]
+  password varchar(255) [not null]
+  user_role varchar(20) [not null, note: 'customer, staff, admin']
+  is_verified boolean [default: false]
+  name varchar(255)
+  email varchar(255) [unique]
+  tel varchar(20)
+  birth_date timestamp
+  point int [default: 0]
+  reset_password_token varchar(255)
+  reset_password_expires timestamp
+  created_at timestamp [not null, default: `CURRENT_TIMESTAMP`]
+}
+
+Table products {
+  product_id int [pk, increment]
+  product_name varchar(255) [not null]
+  price int [not null]
+  sweetness_options "varchar[]" [note: 'e.g. 0, 25, 50, 75, 100']
+  milk_type_options "varchar[]" [note: 'e.g. whole, low-fat, oat, soy']
+  type_options "varchar[]" [note: 'e.g. hot, iced, frappe']
+  image varchar(255)
+}
+
+Table tables {
+  table_id int [pk, increment]
+  table_number varchar(255) [not null]
+  capacity int [not null]
+  status varchar(255) [not null, default: 'empty', note: 'empty, onHold, reserved, full']
+  last_update timestamp
+  created_at timestamp [not null, default: `CURRENT_TIMESTAMP`]
+}
