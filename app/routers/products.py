@@ -1,3 +1,10 @@
+"""
+Products Router
+
+API endpoints สำหรับ products
+- GET /products/ - ดูเมนูทั้งหมด
+"""
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
@@ -10,5 +17,6 @@ router = APIRouter()
 
 @router.get("/", response_model=list[ProductResponse])
 def get_all_products(db: Session = Depends(get_db)):
+    """ดูเมนูสินค้าทั้งหมด (public)"""
     products = db.query(Product).all()
     return products

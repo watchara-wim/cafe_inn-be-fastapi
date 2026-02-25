@@ -1,3 +1,9 @@
+"""
+Order & OrderItem Models
+
+เทียบเท่า models/Order.js + models/ProductsOrders.js
+"""
+
 from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import relationship
@@ -6,6 +12,7 @@ from app.models.base import Base, TimestampMixin
 
 
 class Order(Base, TimestampMixin):
+    """Orders table - คำสั่งซื้อ"""
     __tablename__ = "orders"
 
     order_id = Column(Integer, primary_key=True, autoincrement=True)
@@ -17,6 +24,7 @@ class Order(Base, TimestampMixin):
     net_price = Column(Integer, nullable=False)
     finish_at = Column(DateTime, nullable=True)
 
+    # Relationships
     customer = relationship("User", foreign_keys=[customer_id], back_populates="orders_as_customer")
     staff = relationship("User", foreign_keys=[staff_id], back_populates="orders_as_staff")
     reservation = relationship("Reservation", back_populates="orders")
@@ -24,6 +32,7 @@ class Order(Base, TimestampMixin):
 
 
 class OrderItem(Base):
+    """Order Items table - รายการสินค้าในแต่ละ order"""
     __tablename__ = "order_items"
 
     id = Column(Integer, primary_key=True, autoincrement=True)

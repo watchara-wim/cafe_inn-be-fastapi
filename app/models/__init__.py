@@ -1,3 +1,9 @@
+"""
+Models Package
+
+Import ทุก model เพื่อให้ Base.metadata.create_all() เห็นทุกตาราง
+"""
+
 from app.models.base import Base
 from app.models.user import User
 from app.models.product import Product

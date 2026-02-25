@@ -1,3 +1,9 @@
+"""
+User Model
+
+เทียบเท่า models/Users.js + models/User_Informations.js
+"""
+
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.orm import relationship
 
@@ -5,6 +11,7 @@ from app.models.base import Base, TimestampMixin
 
 
 class User(Base, TimestampMixin):
+    """Users table - สำหรับ authentication"""
     __tablename__ = "users"
 
     user_id = Column(Integer, primary_key=True, autoincrement=True)

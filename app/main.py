@@ -1,3 +1,12 @@
+"""
+FastAPI Application Entry Point
+
+เทียบเท่า index.js ใน Express
+- สร้าง FastAPI app instance
+- ลงทะเบียน routers
+- ตั้งค่า middleware (CORS, etc.)
+"""
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse

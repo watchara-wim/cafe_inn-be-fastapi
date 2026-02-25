@@ -1,7 +1,14 @@
+"""
+Product Schemas
+
+Pydantic models สำหรับ Product API
+"""
+
 from pydantic import BaseModel
 
 
 class ProductResponse(BaseModel):
+    """Response schema สำหรับ product"""
     product_id: int
     product_name: str
     price: int

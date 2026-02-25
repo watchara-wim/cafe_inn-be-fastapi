@@ -1,7 +1,16 @@
+"""
+Application Settings
+
+เทียบเท่า dotenv config ใน Node.js
+- ใช้ pydantic-settings สำหรับ type-safe configuration
+- โหลดค่าจาก .env file อัตโนมัติ
+"""
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    """Application settings loaded from environment variables"""
     # Database
     DATABASE_URL: str = "postgresql://user:password@localhost:5432/cafe_inn"
 

@@ -1,3 +1,10 @@
+"""
+Tables Router
+
+API endpoints สำหรับ tables
+- GET /tables/ - ดูโต๊ะทั้งหมด
+"""
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
@@ -10,5 +17,6 @@ router = APIRouter()
 
 @router.get("/", response_model=list[TableResponse])
 def get_all_tables(db: Session = Depends(get_db)):
+    """ดูโต๊ะทั้งหมด"""
     tables = db.query(Table).all()
     return tables

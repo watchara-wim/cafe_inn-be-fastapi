@@ -1,3 +1,9 @@
+"""
+Reservation Model
+
+เทียบเท่า models/Reservations.js
+"""
+
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import relationship
@@ -6,6 +12,7 @@ from app.models.base import Base, TimestampMixin
 
 
 class Reservation(Base, TimestampMixin):
+    """Reservations table - การจองโต๊ะ"""
     __tablename__ = "reservations"
 
     reservation_id = Column(Integer, primary_key=True, autoincrement=True)

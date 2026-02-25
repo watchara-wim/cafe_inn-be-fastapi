@@ -1,3 +1,11 @@
+"""
+Security Utilities
+
+เทียบเท่า utils/auth.js ใน Node.js
+- Password hashing (bcryptjs → bcrypt)
+- JWT token creation/verification (jsonwebtoken → python-jose)
+"""
+
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
@@ -8,6 +16,7 @@ from app.config.settings import settings
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
+    """ตรวจสอบ password กับ hash"""
     return bcrypt.checkpw(
         plain_password.encode("utf-8"),
         hashed_password.encode("utf-8")
@@ -15,12 +24,14 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 
 
 def get_password_hash(password: str) -> str:
+    """สร้าง hash จาก password"""
     salt = bcrypt.gensalt(rounds=12)
     hashed = bcrypt.hashpw(password.encode("utf-8"), salt)
     return hashed.decode("utf-8")
 
 
 def create_access_token(data: dict[str, Any], expires_delta: timedelta | None = None) -> str:
+    """สร้าง JWT access token"""
     to_encode = data.copy()
 
     if expires_delta:
@@ -39,6 +50,7 @@ def create_access_token(data: dict[str, Any], expires_delta: timedelta | None = 
 
 
 def decode_access_token(token: str) -> dict[str, Any] | None:
+    """ถอดรหัส JWT token"""
     try:
         payload = jwt.decode(
             token,

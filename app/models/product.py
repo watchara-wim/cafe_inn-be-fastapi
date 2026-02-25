@@ -1,3 +1,9 @@
+"""
+Product Model
+
+เทียบเท่า models/Products.js
+"""
+
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import relationship
@@ -6,6 +12,7 @@ from app.models.base import Base
 
 
 class Product(Base):
+    """Products table - เมนูสินค้า"""
     __tablename__ = "products"
 
     product_id = Column(Integer, primary_key=True, autoincrement=True)
