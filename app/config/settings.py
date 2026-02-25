@@ -11,11 +11,13 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     """Application settings loaded from environment variables"""
+
     # Database
-    DATABASE_URL: str = "postgresql://user:password@localhost:5432/cafe_inn"
+    DATABASE_URL: str
+    TEST_DATABASE_URL: str
 
     # JWT Authentication
-    SECRET_KEY: str = "SECRET"
+    SECRET_KEY: str = "your-super-secret-key-change-in-production"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 720
 

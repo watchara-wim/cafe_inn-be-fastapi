@@ -13,13 +13,11 @@ from sqlalchemy.orm import sessionmaker
 
 from app.main import app
 from app.config.database import get_db
+from app.config.settings import settings
 from app.models.base import Base
 from app.models.user import User
 
-# ใช้ test database (เดียวกับ dev ในตอนนี้)
-TEST_DATABASE_URL = "postgresql://watchara@localhost:5432/postgres"
-
-engine = create_engine(TEST_DATABASE_URL)
+engine = create_engine(settings.TEST_DATABASE_URL)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
@@ -34,7 +32,7 @@ def override_get_db():
 app.dependency_overrides[get_db] = override_get_db
 client = TestClient(app)
 
-# Suffix สำหรับแยก test users ไม่ให้ชนกับ seed data
+# Suffix สำหรับแยก test users ไม่ให้ชนกับ data จริง (ได้ลบง่าย ๆ)
 TEST_SUFFIX = "_testauth"
 
 
