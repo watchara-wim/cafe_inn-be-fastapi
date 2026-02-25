@@ -6,7 +6,7 @@ Pydantic models สำหรับ Table API
 
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class TableResponse(BaseModel):
@@ -18,5 +18,4 @@ class TableResponse(BaseModel):
     last_update: datetime | None = None
     created_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
