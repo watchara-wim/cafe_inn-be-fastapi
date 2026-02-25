@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.orm import relationship
 
 from app.models.base import Base
 
@@ -15,3 +16,5 @@ class Product(Base):
     type_options = Column(ARRAY(String), default=[])
 
     image = Column(String(255), nullable=True)
+
+    order_items = relationship("OrderItem", back_populates="product")

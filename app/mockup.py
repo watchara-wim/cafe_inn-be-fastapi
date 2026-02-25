@@ -1,9 +1,8 @@
 from app.config.database import SessionLocal
-from app.models.base import Base
 from app.config.database import engine
-from app.models.user import User
-from app.models.product import Product
-from app.models.table import Table
+
+from app.models import Base, User, Product, Table
+
 from app.core.security import get_password_hash
 
 

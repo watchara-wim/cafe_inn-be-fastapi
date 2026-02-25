@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy.orm import relationship
 
 from app.models.base import Base, TimestampMixin
 
@@ -22,3 +23,8 @@ class User(Base, TimestampMixin):
     # Password reset
     reset_password_token = Column(String(255), nullable=True)
     reset_password_expires = Column(DateTime, nullable=True)
+
+    reservations_as_customer = relationship("Reservation", foreign_keys="Reservation.customer_id", back_populates="customer")
+    reservations_as_staff = relationship("Reservation", foreign_keys="Reservation.staff_id", back_populates="staff")
+    orders_as_customer = relationship("Order", foreign_keys="Order.customer_id", back_populates="customer")
+    orders_as_staff = relationship("Order", foreign_keys="Order.staff_id", back_populates="staff")
