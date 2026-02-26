@@ -11,7 +11,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.routers import auth, products, tables
+from app.routers import auth, products, tables, users
 
 app = FastAPI(
     title="Cafe Inn API",
@@ -45,3 +45,5 @@ def health_check():
 app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
 app.include_router(products.router, prefix="/products", tags=["Products"])
 app.include_router(tables.router, prefix="/tables", tags=["Tables"])
+app.include_router(users.router, prefix="/users", tags=["Users"])
+
